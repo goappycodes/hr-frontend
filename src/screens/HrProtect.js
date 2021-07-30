@@ -13,7 +13,7 @@ function HrProtect({Show}) {
             history.push('/hr-login')
         }
 
-    },[])
+    },[hrInfo,history])
     return (
         <>
            <Show /> 
