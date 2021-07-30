@@ -12,7 +12,7 @@ const EmployeeLogin = ({location,history}) =>{
     const {loading,error,employeeInfo} = employeeLogin
     useEffect(()=>{
         if(employeeInfo){
-            history.push('/dashboard')
+            history.push('/hr-dashboard')
         }
     },[history,employeeInfo])
     const submitHandler =(e)=>{

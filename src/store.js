@@ -1,7 +1,7 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import { hrLoginReducer, registerReducer, verificationReducer } from './reducers/HrReducers';
+import { hrLoginReducer, inviteReducer, registerReducer, verificationReducer } from './reducers/HrReducers';
 import { EmployeeLoginReducer } from './reducers/EmployeeReducers';
 
 const reducer = combineReducers({
@@ -9,6 +9,7 @@ const reducer = combineReducers({
  employeeLogin:EmployeeLoginReducer,
  register :registerReducer,
  verification : verificationReducer,
+ inviteEmployee:inviteReducer
 })
 
 const hrInfoFromStorage = localStorage.getItem('hrInfo') ? JSON.parse(localStorage.getItem('hrInfo')) : null

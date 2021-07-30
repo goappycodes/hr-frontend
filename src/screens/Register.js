@@ -25,13 +25,12 @@ const register = useSelector(state =>state.register)
 const {registered} = register
 useEffect(() => {
 if(hrInfo){
-    history.push('/dashboard')
+    history.push('/hr-dashboard')
 }
 
 },[history,hrInfo,registered])
 
 function submitHandler(e){
-    console.log(email)
 e.preventDefault()
 dispatch(registerAction(firstName,lastName,password,email,gender,phone,organisation,website,address,country,employeeNumber))
 }

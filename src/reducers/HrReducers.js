@@ -1,4 +1,4 @@
-import { HR_LOGIN_FAIL, HR_LOGIN_REQUEST, HR_LOGIN_SUCCESS, HR_LOGOUT, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS, VERIFICATION_FAIL, VERIFICATION_REQUEST, VERIFICATION_SUCCESS } from "../constants/hrApp"
+import { HR_LOGIN_FAIL, HR_LOGIN_REQUEST, HR_LOGIN_SUCCESS, HR_LOGOUT, INVITE_FAIL, INVITE_REQUEST, INVITE_SUCCESS, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS, VERIFICATION_FAIL, VERIFICATION_REQUEST, VERIFICATION_SUCCESS } from "../constants/hrApp"
 
 
 export const hrLoginReducer = (state = {},action)=>{
@@ -38,6 +38,20 @@ export const verificationReducer = (state = {},action)=>{
             return {loading : false ,status:true}
         case VERIFICATION_FAIL:
             return {loading : false ,status:false}
+        default:
+            return state
+    }
+}
+
+
+export const inviteReducer = (state = {},action)=>{
+    switch(action.type){
+        case INVITE_REQUEST:
+            return {loading : true}
+        case INVITE_SUCCESS:
+            return {loading : false ,status:action.payload}
+        case INVITE_FAIL:
+            return {loading : false ,status:action.payload}
         default:
             return state
     }

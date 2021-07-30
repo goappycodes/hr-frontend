@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {login} from '../actions/HrActions' 
 import {Form,Col,Row,Button} from 'react-bootstrap'
-const HrLogin = ({location,history}) =>{
+const HrLogin = ({history}) =>{
     const [email, setEmail]= useState('')
     const [password,setPassword]= useState('')
 
@@ -12,7 +12,7 @@ const HrLogin = ({location,history}) =>{
     const {loading,error,hrInfo} = hrLogin
     useEffect(()=>{
         if(hrInfo){
-            history.push('/dashboard')
+            history.push('/hr-dashboard')
         }
     },[history,hrInfo])
     const submitHandler =(e)=>{

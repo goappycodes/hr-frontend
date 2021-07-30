@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { HR_LOGIN_FAIL, HR_LOGIN_REQUEST, HR_LOGIN_SUCCESS, HR_LOGOUT, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS, VERIFICATION_FAIL, VERIFICATION_REQUEST, VERIFICATION_SUCCESS } from '../constants/hrApp'
+import { HR_LOGIN_FAIL, HR_LOGIN_REQUEST, HR_LOGIN_SUCCESS, HR_LOGOUT, INVITE_FAIL, INVITE_REQUEST, INVITE_SUCCESS, REGISTER_FAIL, REGISTER_REQUEST, REGISTER_SUCCESS, VERIFICATION_FAIL, VERIFICATION_REQUEST, VERIFICATION_SUCCESS } from '../constants/hrApp'
 
 
 export const login = (email, password)=> async (dispatch)=>{
@@ -79,3 +79,27 @@ export const verify = (token,email)=> async (dispatch)=>{
     }
 }
 
+export const invite = (datas)=> async (dispatch,getState)=>{
+    try {
+        dispatch({
+            type:INVITE_REQUEST
+        })
+        const {hrLogin:{hrInfo}}=getState()
+        const config= {
+            headers:{
+                'content-type': 'application/json',
+                Authorization: `Bearer ${hrInfo.token}`
+            },
+        }
+        const {data} = await axios.post('employee/invite-employee',{datas},config)
+        dispatch({
+            type: INVITE_SUCCESS,
+            payload: data
+        })
+    } catch (error) {
+        dispatch({
+            type: INVITE_FAIL,
+            payload:error.response && error.response.data.message ? error.response.data.message : error.message
+        })
+    }
+}
