@@ -3,20 +3,21 @@ import {Link} from 'react-router-dom'
 import {useDispatch,useSelector} from 'react-redux'
 import {login} from '../actions/EmployeeActions' 
 import {Form,Col,Row,Button} from 'react-bootstrap'
+import {logout} from '../actions/HrActions'
 const EmployeeLogin = ({location,history}) =>{
     const [email, setEmail]= useState('')
     const [password,setPassword]= useState('')
 
     const dispatch  = useDispatch()
     const employeeLogin = useSelector(state => state.employeeLogin)
-    const {loading,error,employeeInfo} = employeeLogin
+    const {error,employeeInfo} = employeeLogin
     useEffect(()=>{
         if(employeeInfo){
-            history.push('/hr-dashboard')
+          dispatch(logout())
+            history.push('/employee-dashboard')
         }
     },[history,employeeInfo])
     const submitHandler =(e)=>{
-      console.log(email+password)
         e.preventDefault()
         dispatch(login(email,password))
     }
@@ -44,7 +45,7 @@ const EmployeeLogin = ({location,history}) =>{
       <Form.Control type="password" placeholder="Password" onChange={(e)=> setPassword(e.target.value)} />
     </Col>
   </Form.Group>
-   <Button type="submit" variant="dark">Hr Login</Button>{' '}
+   <Button type="submit" variant="dark">Employee Login</Button>{' '}
    
 </Form>
 <Link to={'/Register'}>NEW HERE? 

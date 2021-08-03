@@ -1,34 +1,34 @@
 import React,{useEffect} from 'react'
 // import queryString from 'query-string'
 import {useDispatch,useSelector} from 'react-redux'
-import {verify} from '../actions/HrActions'
+import {employeeVerificationAction} from '../actions/EmployeeActions'
 
 
-function Verification({location,history}) {
+function Invite({location,history}) {
 const dispatch = useDispatch()
-const verification =  useSelector(state => state.verification)
-    const {status} = verification
+const employeeVerification =  useSelector(state => state.employeeVerification)
+    const {status} = employeeVerification
     const query = new URLSearchParams(location.search);
     const token = query.get('token')
     const email = query.get('email')
     useEffect(()=>{
-        dispatch(verify(token,email))
+        dispatch(employeeVerificationAction(token,email))
     },[])
     if(status === true) {
         return (
             <div>
            user verified
-           {history.push('/hr-login')}
+           {history.push(`/register-employee?token=${token}&email=${email}`)}
             </div>
         )
     }else{
         return (
             <div>
-verifing user
+            verifing user
             </div>
         )
     }
    
 }
 
-export default Verification
+export default Invite

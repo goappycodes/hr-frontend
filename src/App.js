@@ -1,5 +1,4 @@
-import {containers} from 'react-bootstrap'
-import logo from './logo.svg';
+
 // import './App.css';
 import {BrowserRouter as Router ,Route} from 'react-router-dom' 
 import HrLogin from './screens/HrLogin.js';
@@ -9,6 +8,11 @@ import Verification from './screens/Verification';
 import HrProtect from './screens/HrProtect';
 import HrDashboard from './screens/HrDashboard';
 import InviteEmployee from './screens/InviteEmployee';
+import Invite from './screens/Invite';
+import EmployeeRegister from './screens/EmployeeRegister';
+import EmployeeDashboard from './screens/EmployeeDashboard.js';
+import EmployeeProtect from './screens/EmployeeProtect.js';
+import EmployeeProfile from './screens/EmployeeProfile.js';
 function App() {
   return (
     <Router>
@@ -18,6 +22,10 @@ function App() {
       <Route path='/identity-verification' component={Verification} exact></Route>
       <Route path='/hr-dashBoard'> <HrProtect Show={HrDashboard}/></Route>
       <Route path='/invite-employee'> <HrProtect Show={InviteEmployee}/></Route>
+      <Route path='/invite' component={Invite}></Route>
+      <Route path='/register-employee' component={EmployeeRegister}></Route>
+      <Route path='/employee-dashboard'><EmployeeProtect Show={EmployeeDashboard}/></Route>
+      <Route path='/employee-profile'><EmployeeProtect Show={EmployeeProfile}/></Route>
     </Router>
   );
 }

@@ -6,7 +6,6 @@ function HrProtect({Show}) {
     const history = useHistory()
     const hrLogin = useSelector(state => state.hrLogin)
     const {hrInfo}=hrLogin
-    console.log(history)
     useEffect(()=>{
                     // history.push('/hr-login')
         if(hrInfo == null){
