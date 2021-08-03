@@ -22,22 +22,22 @@ const dispatch= useDispatch()
 const hrLogin = useSelector(state => state.hrLogin)
 const {hrInfo}=  hrLogin
 const register = useSelector(state =>state.register)
-const {registered} = register
+const {error,registered} = register
 useEffect(() => {
 if(hrInfo){
-    history.push('/dashboard')
+    history.push('/hr-dashboard')
 }
 
 },[history,hrInfo,registered])
 
 function submitHandler(e){
-    console.log(email)
 e.preventDefault()
 dispatch(registerAction(firstName,lastName,password,email,gender,phone,organisation,website,address,country,employeeNumber))
 }
     return (
         <div>
         {registered && <h1 variant='danger'>please check your email</h1>}
+        {error && <h1 variant='danger'>{error}</h1>}
 
             <Form onSubmit={submitHandler}>
             <h1>Register as a HR and your Organisation</h1>
@@ -69,6 +69,7 @@ dispatch(registerAction(firstName,lastName,password,email,gender,phone,organisat
   </Form.Group>
  
   <Form.Select size="lg" onChange={(e)=>setGender(e.target.value)}>
+  <option disabled="true">select gender</option>
     <option>Male</option>
     <option>Female</option>
     <option>Others</option>
@@ -120,6 +121,7 @@ dispatch(registerAction(firstName,lastName,password,email,gender,phone,organisat
     Submit
   </Button>
   {registered && <h1 variant='danger'>please check your email</h1>}
+  {error && <h1 variant='danger'>{error}</h1>}
 
 </Form>
         </div>

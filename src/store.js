@@ -1,14 +1,17 @@
 import {createStore,combineReducers,applyMiddleware} from 'redux'
 import thunk from 'redux-thunk';
 import {composeWithDevTools} from 'redux-devtools-extension';
-import { hrLoginReducer, registerReducer, verificationReducer } from './reducers/HrReducers';
-import { EmployeeLoginReducer } from './reducers/EmployeeReducers';
+import { hrLoginReducer, inviteReducer, registerReducer, verificationReducer } from './reducers/HrReducers';
+import { EmployeeLoginReducer, employeeVerificationReducer ,employeeRegisterReducer} from './reducers/EmployeeReducers';
 
 const reducer = combineReducers({
  hrLogin: hrLoginReducer,
  employeeLogin:EmployeeLoginReducer,
  register :registerReducer,
  verification : verificationReducer,
+ inviteEmployee:inviteReducer,
+ employeeVerification:employeeVerificationReducer,
+ employeeRegister:employeeRegisterReducer
 })
 
 const hrInfoFromStorage = localStorage.getItem('hrInfo') ? JSON.parse(localStorage.getItem('hrInfo')) : null
@@ -16,7 +19,7 @@ const employeeInfoFromStorage = localStorage.getItem('employeeInfo') ? JSON.pars
 
 const initialState = {
 hrLogin : {hrInfo:hrInfoFromStorage},
-employeeLogin:{employeeLogin:employeeInfoFromStorage}
+employeeLogin:{employeeInfo:employeeInfoFromStorage}
 }
 
 const middleware = [thunk]
